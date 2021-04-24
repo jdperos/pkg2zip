@@ -706,15 +706,15 @@ int main(int argc, char* argv[])
 
     if (type == PKG_TYPE_PSP)
     {
-        snprintf(root, sizeof(root), "pspemu/PSP/GAME/%.9s", id);
+        snprintf(root, sizeof(root), "PSP/%.9s/PSP/GAME/%.9s", id, id);
     }
     else if (type == PKG_TYPE_PSP_THEME)
     {
-        snprintf(root, sizeof(root), "pspemu/PSP/THEME");
+        snprintf(root, sizeof(root), "PSP/THEME");
     }
     else if (type == PKG_TYPE_PSX)
     {
-        snprintf(root, sizeof(root), "pspemu/PSP/GAME/%.9s", id);
+        snprintf(root, sizeof(root), "PSP/%.9s/PSP/GAME/%.9s", id, id);
     }
     else if (type == PKG_TYPE_VITA_DLC)
     {
@@ -887,13 +887,13 @@ int main(int argc, char* argv[])
             {
                 if (strcmp("USRDIR/CONTENT/DOCUMENT.DAT", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/DOCUMENT.DAT", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/DOCUMENT.DAT", id, id);
                 }
                 else if (strcmp("USRDIR/CONTENT/EBOOT.PBP", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/KEYS.BIN", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/KEYS.BIN", id, id);
                     unpack_keys_bin(path, item_key, iv, pkg, enc_offset, data_offset, data_size);
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/EBOOT.PBP", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/EBOOT.PBP", id, id);
                 }
                 else if (strcmp("USRDIR/CONTENT/texture.enc", name) == 0)
                 {
@@ -908,10 +908,10 @@ int main(int argc, char* argv[])
             {
                 if (strcmp("USRDIR/CONTENT/EBOOT.PBP", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/EBOOT.PBP", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/EBOOT.PBP", id, id);
                     if (!pbp)
                     {
-                        snprintf(path, sizeof(path), "pspemu/ISO/%s [%.9s].%s", title, id, cso ? "cso" : "iso");
+                        snprintf(path, sizeof(path), "PSP/%.9s/ISO/%s [%.9s].%s", id, title, id, cso ? "cso" : "iso");
                         out_add_parent(path);
                         unpack_psp_eboot(path, item_key, iv, pkg, enc_offset, data_offset, data_size, cso);
                         continue;
@@ -919,7 +919,7 @@ int main(int argc, char* argv[])
                 }
                 else if (strcmp("USRDIR/CONTENT/DOCUMENT.DAT", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/DOCUMENT.DAT", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/DOCUMENT.DAT", id, id);
                     if (!pbp)
                     {
                         continue;
@@ -927,7 +927,7 @@ int main(int argc, char* argv[])
                 }
                 else if (strcmp("USRDIR/CONTENT/DOCINFO.EDAT", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/DOCINFO.EDAT", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/DOCINFO.EDAT", id, id);
                     if (!pbp)
                     {
                         continue;
@@ -935,7 +935,7 @@ int main(int argc, char* argv[])
                 }
                 else if (strcmp("USRDIR/CONTENT/PSP-KEY.EDAT", name) == 0)
                 {
-                    snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/PSP-KEY.EDAT", id);
+                    snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/PSP-KEY.EDAT", id, id);
                     out_add_parent(path);
                     unpack_psp_key(path, item_key, iv, pkg, enc_offset, data_offset, data_size);
                     continue;
@@ -946,7 +946,7 @@ int main(int argc, char* argv[])
                     char* slash = strchr(name+14, '/');
                     if (slash != NULL)
                     {
-                        snprintf(path, sizeof(path), "pspemu/PSP/GAME/%.9s/%s", id, name+15);
+                        snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/%s", id, id, name+15);
 
                         char* edat = strrchr(name, '.');
                         if (edat != NULL)
@@ -971,7 +971,7 @@ int main(int argc, char* argv[])
             }
             else if (type == PKG_TYPE_PSP_THEME)
             {
-                snprintf(path, sizeof(path), "pspemu/PSP/THEME/%s", name);
+                snprintf(path, sizeof(path), "PSP/THEME/%s", name);
                 out_add_parent(path);
                 unpack_psp_edat(path, item_key, iv, pkg, enc_offset, data_offset, data_size);
                 continue;
