@@ -5,3 +5,4 @@ pkg2zip.exe
 *.obj
 *.pdb
 *.zip
+_build/
