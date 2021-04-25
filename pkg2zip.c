@@ -911,7 +911,7 @@ int main(int argc, char* argv[])
                     snprintf(path, sizeof(path), "PSP/%.9s/PSP/GAME/%.9s/EBOOT.PBP", id, id);
                     if (!pbp)
                     {
-                        snprintf(path, sizeof(path), "PSP/%.9s/ISO/%s [%.9s].%s", id, title, id, cso ? "cso" : "iso");
+                        snprintf(path, sizeof(path), "PSP/%.9s/ISO/%s.%s", id, id, cso ? "cso" : "iso");
                         out_add_parent(path);
                         unpack_psp_eboot(path, item_key, iv, pkg, enc_offset, data_offset, data_size, cso);
                         continue;
